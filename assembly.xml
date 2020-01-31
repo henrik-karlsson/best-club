@@ -1,0 +1,45 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	<id>spring-boot</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	
+	<fileSets>
+		<fileSet>
+			<directory>src/main/bin</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target/wrapper-windows-x86-64-3.5.41/bin</directory>
+			<outputDirectory>wrapper</outputDirectory>
+			<includes>
+				<include>wrapper.exe</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>target/wrapper-windows-x86-64-3.5.41/lib</directory>
+			<outputDirectory>wrapper</outputDirectory>
+			<includes>
+				<include>wrapper.dll</include>
+				<include>wrapper.jar</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/conf</directory>
+			<outputDirectory>conf</outputDirectory>
+		</fileSet>
+	</fileSets>
+
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>${project.groupId}:${project.artifactId}</include>
+			</includes>
+		</dependencySet>
+	</dependencySets>
+</assembly>
